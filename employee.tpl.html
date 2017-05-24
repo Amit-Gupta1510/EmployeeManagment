@@ -1,0 +1,99 @@
+<div class="jumbotron text-center">
+    <h3>{{stateName==='add'? 'Add':'Update'}} Employee Information</h3>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="employeeForm" ng-submit="submitEmployeeDetails()" novalidate>
+                <div class="form-group col-sm-12"
+                     ng-class="{ 'has-error' : employeeForm.name.$invalid}">
+                    <div class="col-sm-3">
+                        <label>Name</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" name="name" class="form-control" ng-model="employeeDetails.name"
+                               minlength="4" placeholder="Enter Employee Name" required>
+                    </div>
+                    <div ng-if="employeeForm.name.$invalid && employeeForm.name.$error.minlength"><span
+                            style="color: red">Enter name at least in four
+                        letters</span>
+                    </div>
+                    <div ng-if="employeeForm.name.$invalid && !employeeForm.name.$error.minlength"><span
+                            style="color: red">Employee name is required.</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12"
+                     ng-class="{ 'has-error' : employeeForm.phone.$invalid}">
+                    <div class="col-sm-3">
+                        <label>Phone</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="number" name="phone" class="form-control"
+                               ng-model="employeeDetails.phone" minlength="10" maxlength="12"
+                               placeholder="Enter Phone Number" required>
+                    </div>
+                    <div class="col-sm-4" ng-if="employeeForm.phone.$invalid && employeeForm.phone.$error.minlength">
+                        <span style="color: red">Phone number should be at least of ten digit</span>
+                    </div>
+                    <div class="col-sm-4" ng-if="employeeForm.phone.$invalid && employeeForm.phone.$error.maxlength">
+                        <span style="color: red">Phone number should be less than  thirteen digit</span>
+                    </div>
+                    <div class="col-sm-4"
+                         ng-if="employeeForm.name.$invalid && !(employeeForm.phone.$error.maxlength || employeeForm.phone.$error.minlength)">
+                        <span style="color: red">Employee phone number  is required.</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-3">
+                        <label>City</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <input type="text" name="city" class="form-control"
+                               ng-model="employeeDetails.address.city" placeholder="Enter City">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-3"><label>Address 1</label></div>
+
+                    <div class="col-sm-4">
+                        <input type="text" name="address_1" class="form-control"
+                               ng-model="employeeDetails.address.address_line1" placeholder="Enter Address line 1">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-3"><label>Address 2</label></div>
+
+                    <div class="col-sm-4">
+                        <input type="text" name="address_2" class="form-control"
+                               ng-model="employeeDetails.address.address_line2" placeholder="Enter Address line 2">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-3"><label>Postal Code</label></div>
+
+                    <div class="col-sm-4">
+                        <input type="number" name="postal_code" class="form-control"
+                               ng-model="employeeDetails.address.postal_code" minlength="6" maxlength="6"
+                               placeholder="Enter postal Code" integer>
+                    </div>
+                    <div class="col-sm-4"
+                         ng-if="(employeeForm.postal_code.$error.maxlength || employeeForm.postal_code.$error.minlength)">
+                        <span style="color: red">Postal code must be of six digit.</span>
+                    </div>
+                    <div class="col-sm-4"
+                         ng-if="employeeForm.postal_code.$invalid && !(employeeForm.postal_code.$error.maxlength || employeeForm.postal_code.$error.minlength)">
+                        <span style="color: red">Postal code must be a valid  +ive integer.</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary" ng-disabled="employeeForm.$invalid">
+                            {{stateName==='add'? 'Add':'Update'}}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
